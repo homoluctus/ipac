@@ -6,3 +6,14 @@ This is ipv4 calculator
 - Subnet mask
 - Network address
 - Broadcast address
+
+## usage
+```
+git clone https://github.com/homoluctus/ipv4.git
+
+# compile
+make
+
+# execution
+./main 192.168.0.1 24
+```
