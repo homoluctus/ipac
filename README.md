@@ -9,7 +9,7 @@ This is ipv4 address calculator
 
 ## usage
 ```
-git clone https://github.com/homoluctus/ipv4.git
+git clone https://github.com/homoluctus/ipac.git
 
 # compile
 make
