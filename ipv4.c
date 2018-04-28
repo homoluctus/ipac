@@ -17,7 +17,7 @@ static char bin_mask[OCTET][9];
 void usage(void)
 {
   puts("\n------------------ IPv4 Calculator ------------------");
-  puts("FORMAT: ./main [IPv4 address] [prefix]");
+  puts("FORMAT: ./ipac [IPv4 address] [prefix]");
   puts("\n# IPv4 address format is xxx.xxx.xxx.xxx (delimiter \".\")\n");
   puts("# If you do not input the prefix,");
   puts("# this outputs only the result converted IPv4 address from decimal to binary");
