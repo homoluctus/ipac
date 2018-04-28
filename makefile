@@ -3,13 +3,13 @@ SRCS=ipv4.c main.c
 OBJS=$(SRCS:.c=.o)
 CFLAGS=-Wall -std=c11 -lm -g
 
-all: main $(SRCS) $(OBJS)
+all: ipac $(SRCS) $(OBJS)
 
 $(OBJS): $(SRCS)
 	$(CC) -c $^
 
-main: $(OBJS)
+ipac: $(OBJS)
 	$(CC) -o $@ $^ $(CFLAGS)
 
-clean: main $(OBJS)
+clean: ipac $(OBJS)
 	rm -i $^
