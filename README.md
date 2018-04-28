@@ -1,5 +1,5 @@
-# ipv4
-This is ipv4 calculator
+# ipac
+This is ipv4 address calculator
 
 ## output ( decimal and binary notation )
 - Host address
@@ -14,6 +14,6 @@ git clone https://github.com/homoluctus/ipv4.git
 # compile
 make
 
-# execution
-./main 192.168.0.1 24
+# example
+./ipac 192.168.0.1 24
 ```
