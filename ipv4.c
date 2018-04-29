@@ -120,7 +120,7 @@ static void displayInDecimalNotaion(int addr[])
   int i;
 
   for (i = 0; i < OCTET; i++) {
-    printf("%8d%s", addr[i], (i < 3) ? "." : "\n");
+    printf("%8d%s", addr[i], (i < 3) ? "." : " |\n");
   }
 }
 
@@ -129,7 +129,7 @@ static void displayInBinaryNotaion(char addr[][9])
   int i;
 
   for (i = 0; i < OCTET; i++) {
-    printf("%s%s", addr[i], (i < 3) ? "." : "\n");
+    printf("%s%s", addr[i], (i < 3) ? "." : " |\n");
   }
 }
 
@@ -138,9 +138,12 @@ void displayHostAddress(char argv[])
   str2dec(argv);
   dec2bin(bin_addr, dec_addr);
 
-  puts("\n++++++++++++Host Address+++++++++++");
+  puts(" --------------------------------------------------- ");
+  printf("| %-11s | ", "Host");
   displayInDecimalNotaion(dec_addr);
+  printf("|%*s| ", 13, " ");
   displayInBinaryNotaion(bin_addr);
+  puts(" ---------------------------------------------------");
 }
 
 void displaySubnetMask(char argv[])
@@ -148,9 +151,11 @@ void displaySubnetMask(char argv[])
   calculateSubnetMask(calculatePrefix(argv));
   dec2bin(bin_mask, dec_mask);
 
-  puts("\n++++++++++++Subnet Mask++++++++++++");
-  displayInDecimalNotaion(dec_mask);
-  displayInBinaryNotaion(bin_mask);
+  printf("| %-11s | ", "Subnet Mask");
+  displayInDecimalNotaion(dec_addr);
+  printf("|%*s| ", 13, " ");
+  displayInBinaryNotaion(bin_addr);
+  puts(" ---------------------------------------------------");
 }
 
 void displayNetworkAddress(char argv[])
@@ -158,9 +163,11 @@ void displayNetworkAddress(char argv[])
   calculateNetworkAddress(calculatePrefix(argv));
   dec2bin(bin_addr, dec_addr);
 
-  puts("\n++++++++++Network Address++++++++++");
+  printf("| %-11s | ", "Network");
   displayInDecimalNotaion(dec_addr);
+  printf("|%*s| ", 13, " ");
   displayInBinaryNotaion(bin_addr);
+  puts(" ---------------------------------------------------");
 }
 
 void displayBroadcastAddress(char argv[])
@@ -168,7 +175,9 @@ void displayBroadcastAddress(char argv[])
   calculateBroadcastAddress(calculatePrefix(argv));
   dec2bin(bin_addr, dec_addr);
 
-  puts("\n+++++++++Broadcast Address+++++++++");
+  printf("| %-11s | ", "Broadcast");
   displayInDecimalNotaion(dec_addr);
+  printf("|%*s| ", 13, " ");
   displayInBinaryNotaion(bin_addr);
+  puts(" ---------------------------------------------------");
 }
