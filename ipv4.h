@@ -4,14 +4,15 @@
 void usage(void);
 static void str2dec(char argv[]);
 static void dec2bin(char bin[][9], int dec[]);
-static int prefix(char argv[]);
-static void net(int prefix);
-static void broad(int prefix);
-static void print_dec(int addr[]);
-static void print_bin(char addr[][9]);
-void host_addr(char argv[]);
-void subnet_mask(char argv[]);
-void net_addr(char argv[]);
-void broad_addr(char argv[]);
+static int calculatePrefix(char argv[]);
+static void calculateSubnetMask(int prefix);
+static void calculateNetworkAddress(int prefix);
+static void calculateBroadcastAddress(int prefix);
+static void displayInDecimalNotaion(int addr[]);
+static void displayInBinaryNotaion(char addr[][9]);
+void displayHostAddress(char argv[]);
+void displaySubnetMask(char argv[]);
+void displayNetworkAddress(char argv[]);
+void displayBroadcastAddress(char argv[]);
 
 #endif

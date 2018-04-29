@@ -66,7 +66,7 @@ static void dec2bin(char bin[][9], int dec[])
   }
 }
 
-static int prefix(char argv[])
+static int calculatePrefix(char argv[])
 {
   /* calculate the prefix */
   int i;
@@ -79,7 +79,7 @@ static int prefix(char argv[])
   return p;
 }
 
-static void mask(int prefix)
+static void calculateSubnetMask(int prefix)
 {
   /* calculate subnet mask */
   int i;
@@ -91,7 +91,7 @@ static void mask(int prefix)
   }
 }
 
-static void net(int prefix)
+static void calculateNetworkAddress(int prefix)
 {
   /* calculate network address */
   int i;
@@ -103,7 +103,7 @@ static void net(int prefix)
   }
 }
 
-static void broad(int prefix)
+static void calculateBroadcastAddress(int prefix)
 {
   /* calculate broadcast address */
   int i;
@@ -115,7 +115,7 @@ static void broad(int prefix)
   }
 }
 
-static void print_dec(int addr[])
+static void displayInDecimalNotaion(int addr[])
 {
   int i;
 
@@ -124,7 +124,7 @@ static void print_dec(int addr[])
   }
 }
 
-static void print_bin(char addr[][9])
+static void displayInBinaryNotaion(char addr[][9])
 {
   int i;
 
@@ -133,42 +133,42 @@ static void print_bin(char addr[][9])
   }
 }
 
-void host_addr(char argv[])
+void displayHostAddress(char argv[])
 {
   str2dec(argv);
   dec2bin(bin_addr, dec_addr);
 
   puts("\n++++++++++++Host Address+++++++++++");
-  print_dec(dec_addr);
-  print_bin(bin_addr);
+  displayInDecimalNotaion(dec_addr);
+  displayInBinaryNotaion(bin_addr);
 }
 
-void subnet_mask(char argv[])
+void displaySubnetMask(char argv[])
 {
-  mask(prefix(argv));
+  calculateSubnetMask(calculatePrefix(argv));
   dec2bin(bin_mask, dec_mask);
 
   puts("\n++++++++++++Subnet Mask++++++++++++");
-  print_dec(dec_mask);
-  print_bin(bin_mask);
+  displayInDecimalNotaion(dec_mask);
+  displayInBinaryNotaion(bin_mask);
 }
 
-void net_addr(char argv[])
+void displayNetworkAddress(char argv[])
 {
-  net(prefix(argv));
+  calculateNetworkAddress(calculatePrefix(argv));
   dec2bin(bin_addr, dec_addr);
 
   puts("\n++++++++++Network Address++++++++++");
-  print_dec(dec_addr);
-  print_bin(bin_addr);
+  displayInDecimalNotaion(dec_addr);
+  displayInBinaryNotaion(bin_addr);
 }
 
-void broad_addr(char argv[])
+void displayBroadcastAddress(char argv[])
 {
-  broad(prefix(argv));
+  calculateBroadcastAddress(calculatePrefix(argv));
   dec2bin(bin_addr, dec_addr);
 
   puts("\n+++++++++Broadcast Address+++++++++");
-  print_dec(dec_addr);
-  print_bin(bin_addr);
+  displayInDecimalNotaion(dec_addr);
+  displayInBinaryNotaion(bin_addr);
 }

@@ -4,13 +4,13 @@
 int main(int argc, char *argv[])
 {
   switch (argc) {
-    case 2: host_addr(argv[1]);
+    case 2: displayHostAddress(argv[1]);
             break;
 
-    case 3: host_addr(argv[1]);
-            subnet_mask(argv[2]);
-            net_addr(argv[2]);
-            broad_addr(argv[2]);
+    case 3: displayHostAddress(argv[1]);
+            displaySubnetMask(argv[2]);
+            displayNetworkAddress(argv[2]);
+            displayBroadcastAddress(argv[2]);
             break;
 
     default: usage(); break;
