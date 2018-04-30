@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 
 #include "ipv4.h"
 
@@ -23,34 +22,31 @@ void usage(void)
   puts("# this outputs only the result converted ADDRESS from decimal to binary");
 }
 
-static void str2dec(char addr[])
+/* convert string to number in decimal notation */
+static void str2dec(char argv[])
 {
-  /* convert string to decimal */
   int i;
-  int count = 0;
-  int octet = OCTET - 1;
-  int len = strlen(addr);
+  int digit = 0, octet = 0;
+  int len = strlen(argv);
+  char temp[4];
 
-  for (i = len - 1; i >= 0; i--) {
-    if (addr[i] == '.') {
-      count = 0;
-      octet--;
-      continue;
+  for (i = 0; i <= len; i++) {
+    if ((argv[i] == '.') || (i == len)) {
+      dec_addr[octet] = atoi(temp);
+      if ((dec_addr[octet] < 0) || (dec_addr[octet] > 254) || (octet > 3)) {
+        puts("[!] Invalid address");
+        exit(EXIT_FAILURE);
+      }
+      octet++;
+      digit = 0;
+      memset(temp, '\0', 4);
+    } else {
+      if (digit > 2) {
+        puts("[!] Invalid address");
+        exit(EXIT_FAILURE);
+      }
+      temp[digit++] = argv[i];
     }
-
-    if ((count > 2) ||(!isdigit(addr[i]))) {
-      puts("Format Error !! Invalid input");
-      usage();
-      exit(EXIT_FAILURE);
-    }
-
-    dec_addr[octet] += (int)(addr[i] - 0x30) * pow(10, (count++));
-  }
-
-  if (octet > 0) {
-    puts("Format Error !! Invalid input");
-    usage();
-    exit(EXIT_FAILURE);
   }
 }
 
