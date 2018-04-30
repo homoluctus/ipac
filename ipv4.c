@@ -16,11 +16,11 @@ static char bin_mask[OCTET][9];
 
 void usage(void)
 {
-  puts("\n------------------ IPv4 Calculator ------------------");
-  puts("FORMAT: ./ipac [IPv4 address] [prefix]");
-  puts("\n# IPv4 address format is xxx.xxx.xxx.xxx (delimiter \".\")\n");
-  puts("# If you do not input the prefix,");
-  puts("# this outputs only the result converted IPv4 address from decimal to binary");
+  puts("\n---------------- IPv4 Address Calculator ----------------");
+  puts("FORMAT: ./ipac ADDRESS [PREFIX]");
+  puts("\n# ADDRESS format is xxx.xxx.xxx.xxx (delimiter \".\")\n");
+  puts("# If you do not input the PREFIX,");
+  puts("# this outputs only the result converted ADDRESS from decimal to binary");
 }
 
 static void str2dec(char addr[])
@@ -66,20 +66,20 @@ static void dec2bin(char bin[][9], int dec[])
   }
 }
 
-static int calculatePrefix(char argv[])
+/* calculate the prefix */
+static unsigned int calculatePrefix(char argv[])
 {
-  /* calculate the prefix */
-  int i;
-  int p = 0;
-  int len = strlen(argv);
+  unsigned int p = (unsigned int)atoi(argv);
 
-  for (i = 0; i < len; i++) {
-    p += (int)(argv[i] - 0x30) * pow(10, len-i-1);
+  if ((p < 1) || (p > 32)) {
+    puts("[!] Please enter 1 <= PREFIX <= 32");
+    exit(EXIT_FAILURE);
   }
+
   return p;
 }
 
-static void calculateSubnetMask(int prefix)
+static void calculateSubnetMask(unsigned int prefix)
 {
   /* calculate subnet mask */
   int i;
@@ -91,7 +91,7 @@ static void calculateSubnetMask(int prefix)
   }
 }
 
-static void calculateNetworkAddress(int prefix)
+static void calculateNetworkAddress(unsigned int prefix)
 {
   /* calculate network address */
   int i;
@@ -103,7 +103,7 @@ static void calculateNetworkAddress(int prefix)
   }
 }
 
-static void calculateBroadcastAddress(int prefix)
+static void calculateBroadcastAddress(unsigned int prefix)
 {
   /* calculate broadcast address */
   int i;
