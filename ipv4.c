@@ -26,8 +26,8 @@ void usage(void)
 static void str2dec(char argv[])
 {
   int i;
-  int digit = 0, octet = 0;
   int len = strlen(argv);
+  int digit = 0, octet = 0;
   char temp[4];
 
   for (i = 0; i <= len; i++) {
