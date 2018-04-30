@@ -133,51 +133,48 @@ static void displayInBinaryNotaion(char addr[][9])
   }
 }
 
-void displayHostAddress(char argv[])
+void displayAddress(char argv[], const short int address_number)
 {
-  str2dec(argv);
-  dec2bin(bin_addr, dec_addr);
+  char *address_name;
 
-  puts(" --------------------------------------------------- ");
-  printf("| %-11s | ", "Host");
-  displayInDecimalNotaion(dec_addr);
+  switch (address_number) {
+    case 0:
+      address_name = "Host";
+      str2dec(argv);
+      dec2bin(bin_addr, dec_addr);
+      puts(" ---------------------------------------------------");
+      break;
+    case 1:
+      address_name = "Subnet Mask";
+      calculateSubnetMask(calculatePrefix(argv));
+      dec2bin(bin_mask, dec_mask);
+      break;
+    case 2:
+      address_name = "Network";
+      calculateNetworkAddress(calculatePrefix(argv));
+      dec2bin(bin_addr, dec_addr);
+      break;
+    case 3:
+      address_name = "Broadcast";
+      calculateBroadcastAddress(calculatePrefix(argv));
+      dec2bin(bin_addr, dec_addr);
+      break;
+    default:
+      puts("[!] Unknown Error");
+      exit(EXIT_FAILURE);
+  }
+
+  printf("| %-11s | ", address_name);
+  if (address_number == 1) {
+    displayInDecimalNotaion(dec_mask);
+  } else {
+    displayInDecimalNotaion(dec_addr);
+  }
   printf("|%*s| ", 13, " ");
-  displayInBinaryNotaion(bin_addr);
-  puts(" ---------------------------------------------------");
-}
-
-void displaySubnetMask(char argv[])
-{
-  calculateSubnetMask(calculatePrefix(argv));
-  dec2bin(bin_mask, dec_mask);
-
-  printf("| %-11s | ", "Subnet Mask");
-  displayInDecimalNotaion(dec_addr);
-  printf("|%*s| ", 13, " ");
-  displayInBinaryNotaion(bin_addr);
-  puts(" ---------------------------------------------------");
-}
-
-void displayNetworkAddress(char argv[])
-{
-  calculateNetworkAddress(calculatePrefix(argv));
-  dec2bin(bin_addr, dec_addr);
-
-  printf("| %-11s | ", "Network");
-  displayInDecimalNotaion(dec_addr);
-  printf("|%*s| ", 13, " ");
-  displayInBinaryNotaion(bin_addr);
-  puts(" ---------------------------------------------------");
-}
-
-void displayBroadcastAddress(char argv[])
-{
-  calculateBroadcastAddress(calculatePrefix(argv));
-  dec2bin(bin_addr, dec_addr);
-
-  printf("| %-11s | ", "Broadcast");
-  displayInDecimalNotaion(dec_addr);
-  printf("|%*s| ", 13, " ");
-  displayInBinaryNotaion(bin_addr);
+  if (address_number == 1) {
+    displayInBinaryNotaion(bin_mask);
+  } else {
+    displayInBinaryNotaion(bin_addr);
+  }
   puts(" ---------------------------------------------------");
 }

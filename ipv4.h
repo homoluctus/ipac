@@ -10,9 +10,6 @@ static void calculateNetworkAddress(int prefix);
 static void calculateBroadcastAddress(int prefix);
 static void displayInDecimalNotaion(int addr[]);
 static void displayInBinaryNotaion(char addr[][9]);
-void displayHostAddress(char argv[]);
-void displaySubnetMask(char argv[]);
-void displayNetworkAddress(char argv[]);
-void displayBroadcastAddress(char argv[]);
+void displayAddress(char argv[], const short int address_number);
 
 #endif
